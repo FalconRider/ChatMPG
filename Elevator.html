@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elevator Conversation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #85828c;
+            color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #033422;
+            text-align: center;
+            margin: 0.5em 0;
+        }
+        .version {
+            font-size: 0.8em;
+            color: #7a7a7a;
+            margin-bottom: 20px;
+        }
+        .instruction {
+            font-size: 1.2em;
+            text-align: center;
+            color: #663300;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 300px;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 1.2em;
+            background-color: #cc6600;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 250px;
+        }
+        button:hover {
+            background-color: #e67300;
+        }
+        .output {
+            font-size: 1.1em;
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>Elevator Conversation</h1>
+    <div class="version">Version: November 1, 2024 - Natural Script Driven TTS</div>
+    <p class="instruction">In English, you would say, "Hello, how are you?"</p>
+    
+    <div class="button-container">
+        <button id="languageButton">Language</button>
+        <button id="answerButton">Answer</button>
+    </div>
+    
+    <div class="output" id="outputText"></div>
+
+    <script>
+        const languages = [
+            { name: "German", phrase: "Guten Tag, wie geht's?" },
+            { name: "Spanish", phrase: "Hola, ¿cómo estás?" },
+            { name: "French", phrase: "Bonjour, comment ça va?" },
+            { name: "Italian", phrase: "Ciao, come stai?" },
+            { name: "Mandarin", phrase: "你好, 你好吗?" },
+            { name: "Russian", phrase: "Здравствуйте, как дела?" },
+            { name: "Japanese", phrase: "こんにちは, お元気ですか?" },
+            { name: "Portuguese", phrase: "Olá, como vai?" },
+            { name: "Arabic", phrase: "مرحباً، كيف حالك؟" },
+            { name: "Korean", phrase: "안녕하세요, 어떻게 지내세요?" }
+        ];
+        
+        let currentIndex = 0;
+
+        document.getElementById("languageButton").addEventListener("click", () => {
+            const language = languages[currentIndex];
+            document.getElementById("outputText").innerText = language.name;
+            currentIndex = (currentIndex + 1) % languages.length;
+        });
+
+        document.getElementById("answerButton").addEventListener("click", () => {
+            const language = languages[(currentIndex - 1 + languages.length) % languages.length];
+            document.getElementById("outputText").innerText = `${language.name}:\n${language.phrase}`;
+
+            // Text-to-Speech for native script
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(language.phrase);
+                // Set TTS language based on the target language
+                switch(language.name) {
+                    case "German": utterance.lang = "de-DE"; break;
+                    case "Spanish": utterance.lang = "es-ES"; break;
+                    case "French": utterance.lang = "fr-FR"; break;
+                    case "Italian": utterance.lang = "it-IT"; break;
+                    case "Mandarin": utterance.lang = "zh-CN"; break;
+                    case "Russian": utterance.lang = "ru-RU"; break;
+                    case "Japanese": utterance.lang = "ja-JP"; break;
+                    case "Portuguese": utterance.lang = "pt-PT"; break;
+                    case "Arabic": utterance.lang = "ar-SA"; break;
+                    case "Korean": utterance.lang = "ko-KR"; break;
+                }
+                window.speechSynthesis.speak(utterance);
+            }
+        });
+    </script>
+</body>
+</html>

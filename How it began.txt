@@ -1,0 +1,54 @@
+I'd like to begin my polyglot journey starting with the simple "pass someone on the street", or "elevator encounter" greeting.
+Not really a conversation, just a polite acknowledgement. But I want to impress with my skills 
+
+I want to have an app that will train me this in a number of languages using recall and repetition.
+
+Can you give me the code  for the html page, with a little internal CSS to make it pretty, using any of 
+JavaScript, Python, SQLite, Flask  if needed.
+
+The page should be accessible from a shortcut on a desktop, starting the html page, I guess.
+
+In big bold, there would be a title "  Elevator Conversation".
+then in medium  print. "In English, you  would say
+ ' Hello, How are you?'"
+
+
+then there is a button labeled "Language".
+
+Hitting that gets the name of a language, and then it holds for me to guess  or remember.
+
+Example:   GERMAN 
+
+I would think and say to myself  "Gutten Tag, wie Ghehtz?
+
+Then there is a button labeled "ANSWER"
+
+Hitting that I'd get:
+
+GERMAN    Gutten Tag, Wie Ghehtz( and a phonetic in brackets) 
+
+I'd do my own score keeping 
+
+
+Hitting the Language Button again  would bring up the next language in order, with it to cycle continuously returning to the first
+
+The program would end by me closing the page.  
+Please correct my German if needed, and give  me this loaded with 10 common languages.
+English is not to be one of the 10.  Substitute any language you don't have the character set for.
+
+
+
+
+ChatGPT said:
+ChatGPT
+Memory updated
+Here’s an HTML and JavaScript implementation to start you on your polyglot journey. This app will help you practice polite greetings in 10 different languages. The code below includes internal CSS for styling and JavaScript to handle the language cycling and answer reveal. You can place this file on your desktop, and opening it will launch the page in your browser.
+
+Code:
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+ Cut here   MORE
