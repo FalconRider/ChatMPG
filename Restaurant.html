@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordering at a Restaurant or Café</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #eae6f9;
+            color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #5e3b91;
+            text-align: center;
+            margin: 0.5em 0;
+        }
+        .version {
+            font-size: 0.8em;
+            color: #6b5b95;
+            margin-bottom: 20px;
+        }
+        .instruction {
+            font-size: 1.2em;
+            text-align: center;
+            color: #4b2e83;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 300px;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 1.2em;
+            background-color: #5e3b91;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 250px;
+        }
+        button:hover {
+            background-color: #6f4ca1;
+        }
+        .output {
+            font-size: 1.1em;
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ordering at a Restaurant or Café</h1>
+    <div class="version">Version: November 1, 2024 - Natural Script Driven TTS</div>
+    <p class="instruction">In English, you would say, "Menu, please. Can I have [beer/water/coffee]? What do you recommend? The bill."</p>
+    
+    <div class="button-container">
+        <button id="languageButton">Language</button>
+        <button id="answerButton">Answer</button>
+    </div>
+    
+    <div class="output" id="outputText"></div>
+
+    <script>
+        const languages = [
+            { name: "German", phrases: ["Speisekarte, bitte.", "Kann ich ein [Bier/Wasser/Kaffee] haben?", "Was empfehlen Sie?", "Die Rechnung."] },
+            { name: "Spanish", phrases: ["Menú, por favor.", "¿Puedo tener [cerveza/agua/café]?", "¿Qué recomienda?", "La cuenta."] },
+            { name: "French", phrases: ["Le menu, s'il vous plaît.", "Puis-je avoir [bière/eau/café]?", "Que recommandez-vous?", "L'addition."] },
+            { name: "Italian", phrases: ["Il menu, per favore.", "Posso avere [birra/acqua/caffè]?", "Cosa consiglia?", "Il conto."] },
+            { name: "Mandarin", phrases: ["菜单，请。", "我可以要[啤酒/水/咖啡]吗？", "你推荐什么?", "账单。"] },
+            { name: "Russian", phrases: ["Меню, пожалуйста.", "Можно мне [пиво/воду/кофе]?", "Что вы порекомендуете?", "Счёт."] },
+            { name: "Japanese", phrases: ["メニューをお願いします。", "[ビール/水/コーヒー]をもらえますか?", "おすすめは?", "お会計。"] },
+            { name: "Portuguese", phrases: ["O menu, por favor.", "Posso ter [cerveja/água/café]?", "O que você recomenda?", "A conta."] },
+            { name: "Arabic", phrases: ["القائمة، من فضلك.", "هل يمكنني الحصول على [بيرة/ماء/قهوة]؟", "ماذا تنصح؟", "الحساب."] },
+            { name: "Korean", phrases: ["메뉴, 부탁합니다.", "[맥주/물/커피] 주세요.", "추천해 주세요.", "계산서."] }
+        ];
+        
+        let currentIndex = 0;
+
+        document.getElementById("languageButton").addEventListener("click", () => {
+            const language = languages[currentIndex];
+            document.getElementById("outputText").innerText = language.name;
+            currentIndex = (currentIndex + 1) % languages.length;
+        });
+
+        document.getElementById("answerButton").addEventListener("click", () => {
+            const language = languages[(currentIndex - 1 + languages.length) % languages.length];
+            const phrasesText = language.phrases.join("\n");
+            document.getElementById("outputText").innerText = `${language.name}:\n${phrasesText}`;
+
+            // Text-to-Speech for native script
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(language.phrases.join(', '));
+                // Set TTS language based on the target language
+                switch(language.name) {
+                    case "German": utterance.lang = "de-DE"; break;
+                    case "Spanish": utterance.lang = "es-ES"; break;
+                    case "French": utterance.lang = "fr-FR"; break;
+                    case "Italian": utterance.lang = "it-IT"; break;
+                    case "Mandarin": utterance.lang = "zh-CN"; break;
+                    case "Russian": utterance.lang = "ru-RU"; break;
+                    case "Japanese": utterance.lang = "ja-JP"; break;
+                    case "Portuguese": utterance.lang = "pt-PT"; break;
+                    case "Arabic": utterance.lang = "ar-SA"; break;
+                    case "Korean": utterance.lang = "ko-KR"; break;
+                }
+                window.speechSynthesis.speak(utterance);
+            }
+        });
+    </script>
+</body>
+</html>
