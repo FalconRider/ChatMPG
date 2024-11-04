@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GETTING THERE and AROUND</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #e0f4f1;
+            color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #00796b;
+            text-align: center;
+            margin: 0.5em 0;
+        }
+        .version {
+            font-size: 0.8em;
+            color: #5a6868;
+            margin-bottom: 20px;
+        }
+        .instruction {
+            font-size: 1.2em;
+            text-align: center;
+            color: #004d40;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 300px;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 1.2em;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 250px;
+        }
+        button:hover {
+            background-color: #009688;
+        }
+        .output {
+            font-size: 1.1em;
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>GETTING THERE and AROUND</h1>
+    <div class="version">Version: November 1, 2024 - Natural Script Driven TTS</div>
+    <p class="instruction">Useful Phrases: "Excuse me, where is...?", "I want to go to...", "It’s an emergency!", "I need help", "Hospital", "Police"</p>
+    
+    <div class="button-container">
+        <button id="languageButton">Language</button>
+        <button id="answerButton">Answer</button>
+    </div>
+    
+    <div class="output" id="outputText"></div>
+
+    <script>
+        const languages = [
+            { name: "English", phrases: ["Excuse me, where is...?", "I want to go to...", "It’s an emergency!", "I need help", "Hospital", "Police"] },
+            { name: "German", phrases: ["Entschuldigen Sie, wo ist...?", "Ich möchte nach... gehen", "Es ist ein Notfall!", "Ich brauche Hilfe", "Krankenhaus", "Polizei"] },
+            { name: "Spanish", phrases: ["Perdón, ¿dónde está...?", "Quiero ir a...", "¡Es una emergencia!", "Necesito ayuda", "Hospital", "Policía"] },
+            { name: "French", phrases: ["Excusez-moi, où est...?", "Je veux aller à...", "C'est une urgence!", "J'ai besoin d'aide", "Hôpital", "Police"] },
+            { name: "Italian", phrases: ["Scusi, dov'è...?", "Voglio andare a...", "È un'emergenza!", "Ho bisogno di aiuto", "Ospedale", "Polizia"] },
+            { name: "Mandarin", phrases: ["请问...在哪里？", "我想去...", "这是紧急情况！", "我需要帮助", "医院", "警察"] },
+            { name: "Russian", phrases: ["Извините, где находится...?", "Я хочу поехать в...", "Это чрезвычайная ситуация!", "Мне нужна помощь", "Больница", "Полиция"] },
+            { name: "Japanese", phrases: ["すみません、どこですか...?", "ここに行きたいです", "緊急事態です！", "助けが必要です", "病院", "警察"] },
+            { name: "Portuguese", phrases: ["Com licença, onde fica...?", "Quero ir para...", "É uma emergência!", "Preciso de ajuda", "Hospital", "Polícia"] },
+            { name: "Arabic", phrases: ["عفواً، أين...?", "أريد الذهاب إلى...", "إنه طارئ!", "أحتاج إلى مساعدة", "مستشفى", "شرطة"] },
+            { name: "Korean", phrases: ["실례합니다, 어디에 있나요...?", "여기에 가고 싶어요", "긴급 상황이에요!", "도움이 필요해요", "병원", "경찰"] },
+            { name: "Hindi", phrases: ["माफ़ कीजिए, ... कहाँ है?", "मुझे यहाँ जाना है", "यह आपातकाल है!", "मुझे मदद चाहिए", "अस्पताल", "पुलिस"] },
+            { name: "Bengali", phrases: ["মাফ করবেন, ... কোথায়?", "আমাকে এখানে যেতে হবে", "এটা জরুরি!", "আমার সাহায্য প্রয়োজন", "হাসপাতাল", "পুলিশ"] }
+        ];
+        
+        let currentIndex = 0;
+
+        document.getElementById("languageButton").addEventListener("click", () => {
+            const language = languages[currentIndex];
+            document.getElementById("outputText").innerText = language.name;
+            currentIndex = (currentIndex + 1) % languages.length;
+        });
+
+        document.getElementById("answerButton").addEventListener("click", () => {
+            const language = languages[(currentIndex - 1 + languages.length) % languages.length];
+            const phrasesText = language.phrases.join("\n");
+            document.getElementById("outputText").innerText = `${language.name}:\n${phrasesText}`;
+
+            // Text-to-Speech for native script
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(language.phrases.join(', '));
+                switch(language.name) {
+                    case "English": utterance.lang = "en-US"; break;
+                    case "German": utterance.lang = "de-DE"; break;
+                    case "Spanish": utterance.lang = "es-ES"; break;
+                    case "French": utterance.lang = "fr-FR"; break;
+                    case "Italian": utterance.lang = "it-IT"; break;
+                    case "Mandarin": utterance.lang = "zh-CN"; break;
+                    case "Russian": utterance.lang = "ru-RU"; break;
+                    case "Japanese": utterance.lang = "ja-JP"; break;
+                    case "Portuguese": utterance.lang = "pt-PT"; break;
+                    case "Arabic": utterance.lang = "ar-SA"; break;
+                    case "Korean": utterance.lang = "ko-KR"; break;
+                    case "Hindi": utterance.lang = "hi-IN"; break;
+                    case "Bengali": utterance.lang = "bn-BD"; break;
+                }
+                window.speechSynthesis.speak(utterance);
+            }
+        });
+    </script>
+</body>
+</html>

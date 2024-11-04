@@ -1,0 +1,51 @@
+
+Continuing with my mini-poly language project, let's explore your next few 
+ suggestions in your "Suggested Situations (Ranked by Probability of Encounter):" list
+I think we can combine a basic survival vocabulary for 
+
+3 Hiring a Taxi or Using Public Transit
+5 Asking for Directions or Help
+6 Dealing with Emergencies (e.g., Police, Medical)
+ 
+
+So, as before skip stuff like "Hello, how are you" because I have this from your  prior work, and any phrases already in the "Market  or Restaurant Conversation"
+
+
+
+FYI 
+Our Cumulative vocabulary to date
+--------------------------
+Elevator   "Hello, how are you?
+Market   "How much is this? No, thank you. Yes, please. Thank you. Goodbye!"
+Restaurant  "Menu, please. Can I have [beer/water/coffee]? What do you recommend? The 	bill."
+    
+
+First, What would you suggest would be the few concise phrases, now to be added to our growing vocabulary relevant to this scenario. I'm thinking- 
+
+Excuse me, Where is This/  Bus/ Taxi/ 
+I want to go to -  Here/ Hotel/Airport.
+Emergency. I need help. Hospital /Police
+
+let me look at you opinion or suggestions before doing any code.
+
+    
+Once we agree on the phrases since the changes you made to this version 
+"
+Elevator Conversation- Version: November 1, 2024 - Natural Script Driven TTS"
+
+worked great on my Android Phone and my Chromebook. and the new Restaurant script  did too.
+
+(I still seem to be having some setup problems with TTS on my third system, the Windows 11 desktop but I'll ignore that system for now.)
+
+Can you give me the code, for a version similar to the last Restaurant Script 
+for a "GETTING THERE and AROUND" script.
+
+That is, the TTS is driven by the  native language and the phonetic text spelling no longer appears. Pick a color scheme that works that we haven't used yet to differentiate it.
+
+Add two new languages to the original order of languages, making the learners goal to become a "triscadec"  speaker as we discussed. Add Hindi and Bengali if you can do the natural scripts. If not skip.
+
+Again add a small print line under the heading that says "Version", gives todays date plus saying "Natural Script Driven TTS".
+
+
+
+
